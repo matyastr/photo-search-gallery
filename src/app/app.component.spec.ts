@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+// TODO: left unit tests as-is from new ionic app creation.
+
 describe('AppComponent', () => {
 
   beforeEach(async () => {

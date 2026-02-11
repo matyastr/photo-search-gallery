@@ -1,25 +1,18 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import {
-  RefresherCustomEvent,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  IonRefresher,
   IonButton,
   IonInput,
-  IonRefresherContent,
   IonGrid,
   IonRow,
   IonCol,
   IonItem,
-  IonList,
 } from "@ionic/angular/standalone";
-import { MessageComponent } from "../message/message.component";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-
-import { DataService, Message } from "../services/data.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-home",
@@ -31,22 +24,16 @@ import { DataService, Message } from "../services/data.service";
     IonToolbar,
     IonTitle,
     IonContent,
-    IonRefresher,
-    IonRefresherContent,
-    IonList,
     IonButton,
     IonInput,
     IonGrid,
     IonRow,
     IonCol,
     IonItem,
-    MessageComponent,
   ],
 })
 export class HomePage {
   searchControl = new FormControl("");
-  private data = inject(DataService);
-
   photos = signal<any>([]);
 
   // NOTE: This is a publicly available key found in the Pixabay API documentation here: https://pixabay.com/api/docs/#api_search_images
@@ -56,17 +43,6 @@ export class HomePage {
   private searchUrl = "https://pixabay.com/api/";
 
   constructor(private http: HttpClient) {}
-
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
-  }
-
-  // TODO: Clean up
-  getMessages(): Message[] {
-    return this.data.getMessages();
-  }
 
   onSearch() {
     const searchTerm = this.searchControl.value;

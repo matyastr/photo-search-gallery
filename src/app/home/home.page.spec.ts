@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+// TODO: left unit tests as-is from new ionic app creation.
+
 describe('HomePage', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
